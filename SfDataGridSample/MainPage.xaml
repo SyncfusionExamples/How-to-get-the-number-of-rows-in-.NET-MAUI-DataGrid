@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:local="clr-namespace:SfDataGridSample"
+             x:Class="SfDataGridSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:EmployeeViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <syncfusion:SfDataGrid x:Name="dataGrid"
+                               VerticalOptions="FillAndExpand"
+                               ColumnWidthMode="Auto"
+                               GridLinesVisibility="Both"
+                               AutoGenerateColumnsMode="None"
+                               HeaderGridLinesVisibility="Both"
+                               ItemsSource="{Binding Employees}">
+
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:DataGridNumericColumn MappingName="EmployeeID"
+                                                  Format="#"
+                                                  HeaderText="Employee ID" />
+                <syncfusion:DataGridTextColumn MappingName="Name"
+                                               HeaderText="Employee Name" />
+                <syncfusion:DataGridTextColumn MappingName="Title"
+                                               HeaderText="Designation" />
+                <syncfusion:DataGridDateColumn MappingName="HireDate"
+                                               HeaderText="Hire Date" />
+            </syncfusion:SfDataGrid.Columns>
+
+            <syncfusion:SfDataGrid.StackedHeaderRows>
+                <syncfusion:DataGridStackedHeaderRow>
+                    <syncfusion:DataGridStackedHeaderRow.Columns>
+                        <syncfusion:DataGridStackedColumn ColumnMappingNames="EmployeeID,Name,Title,HireDate"
+                                                          Text="Employee Shipment Details"
+                                                          MappingName="SalesDetails" />
+                    </syncfusion:DataGridStackedHeaderRow.Columns>
+                </syncfusion:DataGridStackedHeaderRow>
+                <syncfusion:DataGridStackedHeaderRow>
+                    <syncfusion:DataGridStackedHeaderRow.Columns>
+                        <syncfusion:DataGridStackedColumn ColumnMappingNames="EmployeeID,Name"
+                                                          Text="Employee Details"
+                                                          MappingName="PersonalDetails" />
+                        <syncfusion:DataGridStackedColumn ColumnMappingNames="Title,HireDate"
+                                                          Text="Company Details"
+                                                          MappingName="CompanyDetails" />
+                    </syncfusion:DataGridStackedHeaderRow.Columns>
+                </syncfusion:DataGridStackedHeaderRow>
+            </syncfusion:SfDataGrid.StackedHeaderRows>
+
+        </syncfusion:SfDataGrid>
+        <Button Text="Rows Count" WidthRequest="150" HeightRequest="50"
+                Clicked="Button_Clicked" />
+    </StackLayout>
+    
+
+</ContentPage>
